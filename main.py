@@ -10,15 +10,16 @@ dir_p = []
 
 def get_logo(n):
     file = filedialog.askopenfile(initialdir='.', filetypes=(('PNG', '*.png'), ("All Files", "*.*")))
-    try:
-        path = str(file.name)
-        s_name = path.split('/')
-        name = s_name[len(s_name) - 1]
-        TEXT = Label(win, text=name)
-        TEXT.grid(row=4, column=1)
-    except AttributeError:
-        pass
-    logo_p.append(file.name)
+    if file is not None:
+        try:
+            path = str(file.name)
+            s_name = path.split('/')
+            name = s_name[len(s_name) - 1]
+            TEXT = Label(win, text=name)
+            TEXT.grid(row=4, column=1)
+        except AttributeError:
+            pass
+        logo_p.append(file.name)
 
 
 def get_dir(n):
@@ -34,31 +35,56 @@ def get_dir(n):
         pass
 
 
+def show_label(text, r, c, color):
+    l1 = Label(win, text=text)
+    l1.grid(row=r, column=c)
+    l1.config(bg=color)
+
+
 def submit(mod_id_en, name_en):
     mod_id_bool = False
     mod_name_bool = False
     dir_path_bool = False
-    logo_path_bool = False
     mod_id_uc = str(mod_id_en.get(1.0, END)).replace(" ", "_").lower().strip('\n,./?";:{}[]()_-+=')
     name_uc = str(name_en.get(1.0, END)).strip(' \n')
-    print(mod_id_uc)
-    print(name_uc)
+    logo = ''
+    dic = ''
     if mod_id_uc == '':
-        print('Invalid Mod Id')
+        show_label(text='ID', r=1, c=2, color='red')
         mod_id_bool = False
         pass
     else:
+        show_label(text='ID', r=1, c=2, color='green')
         mod_id_bool = True
         if name_uc.strip('\n ') == '':
-            print('Invalid Mod Name')
+            show_label(text='NAME', r=2, c=2, color='red')
             mod_name_bool = False
             pass
         else:
+            show_label(text='NAME', r=2, c=2, color='green')
             mod_name_bool = True
             if logo_p is None or logo_p == '' or logo_p == []:
-                print('Invalid Logo Path')
-                logo_path_bool = False
+                show_label(text='Optional', r=3, c=2, color='yellow')
                 pass
+            else:
+                try:
+                    logo = logo_p[0]
+                except IndexError:
+                    win.destroy()
+            if dir_p is None or dir_p == '' or dir_p == []:
+                show_label(text='Dir', r=5, c=2, color='red')
+                print('Invalid Dir Path')
+                dir_path_bool = False
+                pass
+            else:
+                show_label(text='Dir', r=5, c=2, color='red')
+                dir_path_bool = True
+                try:
+                    dic = dir_p[0]
+                    work(mod_id_uc, name_uc, logo, dic)
+                except IndexError:
+                    win.destroy()
+                    quit(0)
 
     return
 
