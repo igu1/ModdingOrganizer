@@ -169,7 +169,7 @@ public class Main {
         MinecraftForge.EVENT_BUS.register(this);
     }
         ''')
-    except:`
+    except:
         pass
     file = open('me/eza/' + ID + '/UseFull.txt', 'w+')
     file.write('''
