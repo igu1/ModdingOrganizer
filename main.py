@@ -73,7 +73,6 @@ def submit(mod_id_en, name_en):
                     win.destroy()
             if dir_p is None or dir_p == '' or dir_p == []:
                 show_label(text='Dir', r=5, c=2, color='red')
-                print('Invalid Dir Path')
                 dir_path_bool = False
                 pass
             else:
@@ -136,7 +135,7 @@ def clearing_items(f_name, ID):
         file.write(ID)
         file.close()
     except:
-        print("Failed To Adding MOD_ID")
+        pass
     os.chdir('../')
 
 
@@ -170,8 +169,8 @@ public class Main {
         MinecraftForge.EVENT_BUS.register(this);
     }
         ''')
-    except:
-        print("Error Found")
+    except:`
+        pass
     file = open('me/eza/' + ID + '/UseFull.txt', 'w+')
     file.write('''
 public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Main.ID);
