@@ -48,11 +48,17 @@ def submit(mod_id_en, name_en):
         mod_id_bool = False
         pass
     else:
+        mod_id_bool = True
         if name_uc.strip('\n ') == '':
             print('Invalid Mod Name')
             mod_name_bool = False
             pass
-
+        else:
+            mod_name_bool = True
+            if logo_p is None or logo_p == '' or logo_p == []:
+                print('Invalid Logo Path')
+                logo_path_bool = False
+                pass
 
     return
 
