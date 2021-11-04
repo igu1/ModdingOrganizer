@@ -1,0 +1,25 @@
+modLoader="javafml"
+LoaderVersion="[37,)"
+license="All rights reserved"
+[[mods]]
+modId="candylandy"
+version="${file.jarVersion}"
+displayName="Candy landy"
+logoFile="examplemod.png"
+credits="Thanks for Downloading Our New Mod"
+authors="Eza"
+description=""""""
+
+# [[dependencies.examplemod]]   
+#     modId="forge"
+#     mandatory=true
+#     versionRange="[37,)"
+#     ordering="NONE"
+#     side="BOTH"
+# [[dependencies.examplemod]]
+#     modId="minecraft"
+#     mandatory=true
+#     versionRange="[1.17.1,1.18)"
+#     ordering="NONE"
+#     side="BOTH"
+    
